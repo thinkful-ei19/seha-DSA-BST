@@ -132,5 +132,22 @@ function height(node){
   }
 }
 
-console.log(height(main()));
+// console.log(height(main()));
 
+function isBST(node){
+  if(!node){
+    return true;
+  }
+  //console.log('hello');
+  if(node.left !== null && node.value < node.left.value){
+    return false;  
+  }
+  //console.log('hi');
+  if (node.right !== null && node.value > node.right.value) {
+    return false;
+  }
+  return isBST(node.left) && isBST(node.right);
+}
+//const tree = { 'key': 0, 'value': 0, 'left': { 'key': 1, 'value': 1, 'left': null, 'right': { 'key': 2, 'value': 2, 'left': null, 'right': null } }, 'right': { 'key': 4, 'value': 4, 'left': null, 'right': null } };
+console.log(isBST(main()));
+//console.log(isBST(tree));
