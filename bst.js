@@ -113,6 +113,7 @@ function main() {
   bst.insert(2,2); 
   bst.insert(5,5);
   bst.insert(7,7);
+ 
   
   return bst;
 }
@@ -132,7 +133,7 @@ function height(node){
   }
 }
 
-// console.log(height(main()));
+console.log(height(main()));
 
 function isBST(node){
   if(!node){
@@ -151,3 +152,74 @@ function isBST(node){
 //const tree = { 'key': 0, 'value': 0, 'left': { 'key': 1, 'value': 1, 'left': null, 'right': { 'key': 2, 'value': 2, 'left': null, 'right': null } }, 'right': { 'key': 4, 'value': 4, 'left': null, 'right': null } };
 console.log(isBST(main()));
 //console.log(isBST(tree));
+
+
+function thirdLargestNode(node, kth=1){
+  if(!node){
+    return console.log('Tree is empty');
+
+  }if(kth === 3){
+    return node.value;
+  } 
+  return thirdLargestNode(node.right, kth + 1) || thirdLargestNode(node.left, kth + 1);
+}
+
+console.log(thirdLargestNode(main()));
+
+
+
+function shortestHeight(node) {
+  if (!node) {
+    return 0;
+  }
+  if (!node.left && !node.right) {
+    return 1;
+  } else if (node.left || node.right) {
+    return Math.min(height(node.left), height(node.right)) + 1;
+  }
+}
+console.log(shortestHeight(main()));
+
+function isBalanced(node){
+  if( height(node) - shortestHeight(node) < 2){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+console.log(isBalanced(main()));
+
+
+// function thirdLargestNode(node) {
+//   if (!node) {
+//     return console.log('Tree is empty');
+//   }
+//   let current = node;
+//   console.log(current);
+  
+//   while(current){
+//     if(!current.left && current.right){
+//       return thirdLargestNode(current.right);
+//     }
+//     if(current.left && !current.left.left && !current.left.right){
+//       return current.value;
+//     }  
+//     current = current.left; 
+//   }
+// }
+// console.log(thirdLargestNode(main()));
+
+// function thirdhmaximum(node, counter=3){
+
+//   if (node.right.size() === counter-1 ) {
+//     return node.value();
+//   }
+//   if (node.right.size() >= counter)
+  
+//     return thirdhmaximum(counter, node.right);
+//   else {
+//     return thirdhmaximum(counter - node.right.size() - 1, node.left);
+//   }
+// }
+// console.log(thirdhmaximum(main()));
