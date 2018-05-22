@@ -94,7 +94,15 @@ class BST {
     }
     return this.left._findMin();
   }
+  _findMax() {
+    if (!this.right) {
+      return this;
+    }
+    return this.right._findMax();
+  }
 }
+
+
 function main() {
   let bst = new BST();
   bst.insert(3,3);
@@ -105,6 +113,24 @@ function main() {
   bst.insert(2,2); 
   bst.insert(5,5);
   bst.insert(7,7);
+  
+  return bst;
+}
+console.log(main());
+  
+main();
+
+
+function height(node){
+  if(!node) {
+    return 0;
+  }
+  if(!node.left && !node.right){
+    return 1;
+  } else if( node.left || node.right ) {
+    return Math.max(height(node.left), height(node.right)) + 1;
+  }
 }
 
-main();
+console.log(height(main()));
+
